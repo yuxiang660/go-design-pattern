@@ -1,2 +1,2 @@
-# go-design-pattern
-Notes of the book "Go Design Pattern"
+# Singleton Design Pattern
+* [singleton](./code/singleton/singleton.go)
