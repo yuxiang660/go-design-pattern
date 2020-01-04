@@ -1,72 +1,30 @@
 package builder
 
-type buildProcess interface {
-	setWheels() buildProcess
-	setSeats() buildProcess
-	setStructure() buildProcess
-	GetVehicle() VehicleProduct
+// Builder is the build process of a product.
+type Builder interface {
+	SetWheels() Builder
+	SetSeats() Builder
+	SetStructure() Builder
 }
 
-type VehicleProduct struct {
+// Product defines the construct of a product.
+type Product struct {
 	Wheels int
 	Seats int
 	Structure string
 }
 
-type CarBuilder struct {
-	v VehicleProduct
-}
-
-func (c *CarBuilder) setWheels() buildProcess {
-	c.v.Wheels = 4
-	return c
-}
-
-func (c *CarBuilder) setSeats() buildProcess {
-	c.v.Seats = 5
-	return c
-}
-
-func (c *CarBuilder) setStructure() buildProcess {
-	c.v.Structure = "Car"
-	return c
-}
-
-func (c *CarBuilder) GetVehicle() VehicleProduct {
-	return c.v
-}
-
-type BikeBuilder struct {
-	v VehicleProduct
-}
-
-func (b *BikeBuilder) setWheels() buildProcess {
-	b.v.Wheels = 2
-	return b
-}
-
-func (b *BikeBuilder) setSeats() buildProcess {
-	b.v.Seats = 2
-	return b
-}
-
-func (b *BikeBuilder) setStructure() buildProcess {
-	b.v.Structure = "Motorbike"
-	return b
-}
-
-func (b *BikeBuilder) GetVehicle() VehicleProduct {
-	return b.v
-}
-
+// ManufacturingDirector manages the process to build a product.
 type ManufacturingDirector struct {
-	builder buildProcess
+	builder Builder
 }
 
+// Construct defines the sequence of build process.
 func (f *ManufacturingDirector) Construct() {
-	f.builder.setSeats().setStructure().setWheels()
+	f.builder.SetSeats().SetStructure().SetWheels()
 }
 
-func (f *ManufacturingDirector) SetBuilder(b buildProcess) {
+// SetBuilder is used to set a builder for different products.
+func (f *ManufacturingDirector) SetBuilder(b Builder) {
 	f.builder = b
 }

@@ -5,7 +5,7 @@ import "testing"
 func TestBuilderPattern(t *testing.T) {
 	manufacturingComplex := ManufacturingDirector{}
 
-	carBuilder := new(CarBuilder)
+	carBuilder := new(Car)
 	manufacturingComplex.SetBuilder(carBuilder)
 	manufacturingComplex.Construct()
 
@@ -22,7 +22,7 @@ func TestBuilderPattern(t *testing.T) {
 		t.Errorf("Seats on a car must be 5 and they were %d\n", car.Seats)
 	}
 
-	bikeBuilder := new(BikeBuilder)
+	bikeBuilder := new(Bike)
 
 	manufacturingComplex.SetBuilder(bikeBuilder)
 	manufacturingComplex.Construct()
